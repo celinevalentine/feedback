@@ -17,3 +17,16 @@ class LoginForm(FlaskForm):
     """form for login a user"""
     username = StringField("Username", validators=[InputRequired(), Length(min=6, max=20)])
     password = PasswordField("Password", validators=[InputRequired(), Length(min=6, max=50)])
+
+class FeedbackForm(FlaskForm): 
+    """form for adding feedback"""
+    title = StringField("Title",validators=[InputRequired(),Length(max=100)])
+    content = StringField("Content",validators=[InputRequired()])
+    
+
+
+
+
+
+class DeleteForm(FlaskForm):
+    """reset form to blank"""

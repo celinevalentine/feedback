@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <title>Flask Feedback &ndash; {% block title %}  {% endblock %}</title>
     <link rel="stylesheet"
         href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
-        
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="" class="navbar-brand">Flask Feedback</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                {% if 'username' in session %}
+                <a href="/login" class="nav-link">Logout</a>
+                {% else %}
+                <a href="/users/{session['username']}" class="nav-link">Login</a>
+                <a href="/register" class="nav-link">Register</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+
+
+
     <main id="content">
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -23,7 +37,8 @@
         {% endif %}
         {% endwith %}
     </main>
-</body>
+
 {% block content %}
 {% endblock %}
+</body>
 </html>
