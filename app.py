@@ -80,7 +80,8 @@ def show_user(username):
     
     if "username" not in session or username != session["username"]:
         raise Unauthorized()
-    user = User.query.get("username")
+
+    user = User.query.get(username)
     form = DeleteForm()
     
     return render_template('/users/show.html', user=user, form=form)
